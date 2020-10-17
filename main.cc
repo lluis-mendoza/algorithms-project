@@ -8,8 +8,9 @@ int main(int argc, char** argv){
    srand(time(NULL));
     
     Graph g;
-    g.read_graph();
-    g.print_graph();
+    //g.read_graph();
+    g.createNxN(3);
+    //g.print_graph();
     cout<<"Num connex components = "<<g.numCompConnex()<<endl;
     double q;
     cin>>q;
@@ -18,7 +19,7 @@ int main(int argc, char** argv){
     cout<<endl;
     g.precolacio_graf_aresta(q);
     g.precolacio_graf_node(q);
-    g.print_graph();
+    //g.print_graph();
     cout<<"Num connex components = "<<g.numCompConnex()<<endl;
     return 0;
 }

@@ -26,6 +26,7 @@ class Graph{
     Graph(){}
     void print_graph();
     void read_graph();
+    void createNxN(int n);
     void treure_aresta(pair<int, int> edge);
     void treure_node(int node);
     int numCompConnex();

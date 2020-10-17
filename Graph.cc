@@ -1,5 +1,29 @@
 #include "Graph.h"
 
+void Graph::createNxN(int n){
+  vector<Node> nodes(n*n);
+  for(int i = 0; i< n*n; ++i) nodes[i].value = i;
+  for(int i = 0; i < n; ++i){
+    for(int j = 0; j < n; ++j){
+      if (j > 0){
+        nodes[i*n+j].adj.push_back(i*n+(j-1));
+        this->edges.insert(make_pair(i*n+j, i*n+(j-1)));
+      }
+      if (j < n-1){
+        nodes[i*n+j].adj.push_back(i*n+(j+1));
+      }
+      if (i > 0){
+        nodes[i*n+j].adj.push_back((i-1)*n+j);
+        this->edges.insert(make_pair(i*n+j, (i-1)*n+j));
+      }
+      if (i < n-1){
+        nodes[i*n+j].adj.push_back((i+1)*n+j);
+      }
+    }
+  }
+  this->n = n*n;
+  this->nodes = nodes;
+}
 void Graph::read_graph(){
   int n;
   cin>>n;
