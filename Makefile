@@ -1,9 +1,13 @@
 CC=g++
 CFLAGS=-Wall -Wextra -O2
+DEPS = Graph.h
 
-main: 
-	$(CC) $(CFLAGS) -o main main.cc
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< -I
+
+main: Graph.o
+	$(CC) $(CFLAGS) -o main main.cc Graph.o
 
 .PHONY: main
 clean:
-	rm main
+	rm main *.o
