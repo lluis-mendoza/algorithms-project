@@ -98,12 +98,34 @@ void precolacio_graf(Graph &g, double q, bool nodos, bool aristas){
     }
   }
 }
+void DFS(const Graph &g, int v, vector<bool> &visited){
+  visited[v] = true;
+  for(auto adj : g.nodes[v].adj){
+    if (!visited[adj]){
+      DFS(g, adj, visited);
+    }
+  }
+}
 
+
+int numCompConnex(const Graph &g){
+  int num = 0;
+  int n = g.nodes.size();
+  vector<bool> visited(n, false);
+  for(int i = 0; i < n; ++i){
+    if (!visited[i] && g.nodes[i].value != -1){
+      DFS(g, i, visited);
+      ++num;
+    }
+  }
+  return num;
+}
 int main(int argc, char** argv){
    srand(time(NULL));
     
     Graph g = read_graph();
     print_graph(g);
+    cout<<"Num connex components = "<<numCompConnex(g)<<endl;
     double q;
     cin>>q;
     cout<<endl;
@@ -111,5 +133,6 @@ int main(int argc, char** argv){
     cout<<endl;
     precolacio_graf(g, q,true,true);
     print_graph(g);
+    cout<<"Num connex components = "<<numCompConnex(g)<<endl;
     return 0;
 }
