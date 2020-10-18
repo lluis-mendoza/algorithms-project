@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include <time.h>
 #include "Graph.h"
 
