@@ -20,7 +20,6 @@ int main(int argc, char** argv){
   g.precolacio_graf_aresta(q);
   g.precolacio_graf_node(q);
   int act = g.numCompConnex();
-
   cout<<(ant!=act)<<endl;
   return 0;
 }

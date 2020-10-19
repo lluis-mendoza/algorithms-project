@@ -13,22 +13,24 @@ using namespace std;
 
 struct Node{
   int value;
-  list<int> adj;
+  list<Node*> adj;
 };
+
+typedef pair<Node*, Node*> Edge;
 
 class Graph{
   private:
     int n;
-    vector<Node> nodes;
-    set<pair<int, int> > edges;
-    void DFS(int node, vector<bool> &visited);
+    vector<Node*> nodes;
+    set<Edge> edges;
+    void DFS(Node* node, vector<bool> &visited);
   public:  
     Graph(){}
     void print_graph();
     void read_graph();
     void createNxN(int n);
-    void treure_aresta(pair<int, int> edge);
-    void treure_node(int node);
+    void treure_aresta(Edge &e);
+    void treure_node(Node* n);
     int numCompConnex();
     void precolacio_graf_aresta(double q);
     void precolacio_graf_node(double q);
