@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-Wall -Wextra -O2
+CFLAGS=-std=c++11 -Wall -Wextra -O2
 DEPS = Graph.h
 
 %.o: %.c $(DEPS)
