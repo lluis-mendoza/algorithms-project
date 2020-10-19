@@ -5,6 +5,7 @@ void Graph::createNxN(int n){
   for(int i = 0; i< n*n; ++i){
     nodes[i] = new Node;
     nodes[i]->value = i;
+    
   }
   for(int i = 0; i < n; ++i){
     for(int j = 0; j < n; ++j){
@@ -64,9 +65,10 @@ void Graph::print_graph(){
     cout<<edge.first->value<<" "<<edge.second->value<<endl;
   }
 }
-void Graph::treure_aresta(Edge &edge){
+void Graph::treure_aresta(set<Edge>::iterator &e){
+  auto edge = *e;
   if (edges.find(edge) != edges.end()){
-    edges.erase(edge);
+    e = edges.erase(e);
     auto it = find(edge.first->adj.begin(), edge.first->adj.end(), edge.second);
     if (it != edge.first->adj.end()) edge.first->adj.erase(it);
     auto it2 = find(edge.second->adj.begin(), edge.second->adj.end(), edge.first);
@@ -89,12 +91,12 @@ nodes[min(adj->value, node->value)]);
 
 
 void Graph::precolacio_graf_aresta( double q){
-  for(auto edge : edges){
+  for(auto edge= edges.begin(); edge != edges.end(); ){
     int val = rand()%1000;
     if (q*1000 > val){
       treure_aresta(edge);
     }
-    
+    else ++edge;
   }
  } 
 void Graph::precolacio_graf_node(double q){
