@@ -4,13 +4,14 @@ DEPS = Graph.h
 
 .PHONY: all
 .DEFAULT: all
-all: Graph.o main
+all: Graph.o modeloC
 
 Graph.o: Graph.cc Graph.h
 	$(CC) $(CFLAGS) -I./ -c Graph.cc
 
-main: Graph.o
-	$(CC) $(CFLAGS) -o main main.cc Graph.o
+modeloC: Graph.o .FORCE
+	$(CC) $(CFLAGS) -o modeloC modeloC.cc Graph.o
 
+.FORCE:
 clean:
-	rm main *.o
+	rm modeloC *.o
