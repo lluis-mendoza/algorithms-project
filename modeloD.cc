@@ -24,7 +24,7 @@ int main(){
       Graph g;
       g.createRGG(n, r);
       g.precolacio_graf_aresta(q);
-      numTotalCompConnex += (float)g.numCompConnex()/(n*n);
+      numTotalCompConnex += (float)g.numCompConnex()/n;
     }
     cout<<"Probabilidad q = "<<q;
     cout<<" "<<numTotalCompConnex/num<<endl;
