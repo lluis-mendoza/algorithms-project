@@ -29,6 +29,33 @@ void Graph::createNxN(int n){
   this->nodes = nodes;
 }
 
+void Graph::createRGG(int n, double r){
+  vector<Node*> nodes(n);
+  vector<Pos> pos(n);
+  for(int i = 0; i< n; ++i){
+    nodes[i] = new Node;
+    nodes[i]->value = i;
+    pos[i] = make_pair((rand()%1000)/1000.0, (rand()%1000)/1000.0);
+  }
+
+  for(int i=0; i < n; ++i){
+      for(int j=i+1; j < n; ++j){
+          if(distancia(pos[i],pos[j]) < r){
+              this->edges.insert(make_pair(nodes[i], nodes[j]));
+              nodes[i]->adj.push_back(nodes[j]);
+              nodes[j]->adj.push_back(nodes[i]);
+          }
+      }
+  }
+  this->n = n;
+  this->nodes = nodes;
+}
+double Graph::distancia(Pos a, Pos b){
+  double deltaX = a.first - b.first;
+  double deltaY = a.second - b.second;
+  return sqrt((deltaX*deltaX) + (deltaY*deltaY));
+}
+
 void Graph::read_graph(){
   int n;
   cin>>n;
