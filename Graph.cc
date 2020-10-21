@@ -28,6 +28,7 @@ void Graph::createNxN(int n){
   this->n = n*n;
   this->nodes = nodes;
 }
+
 void Graph::read_graph(){
   int n;
   cin>>n;
@@ -46,6 +47,7 @@ void Graph::read_graph(){
   this->n = n;
   this->nodes = nodes;
 }
+
 void Graph::print_graph(){
   cout<<"Nodes: "<<endl;
   for(int i = 0; i < (int)nodes.size(); ++i){
@@ -65,6 +67,7 @@ void Graph::print_graph(){
     cout<<edge.first->value<<" "<<edge.second->value<<endl;
   }
 }
+
 void Graph::treure_aresta(set<Edge>::iterator &e){
   auto edge = *e;
   if (edges.find(edge) != edges.end()){
@@ -75,6 +78,7 @@ void Graph::treure_aresta(set<Edge>::iterator &e){
     if (it2 != edge.second->adj.end()) edge.second->adj.erase(it2);
   }
 }
+
 void Graph::treure_node(Node* node){
   auto it = node->adj.begin();
   while(it != node->adj.end()){
@@ -89,7 +93,6 @@ nodes[min(adj->value, node->value)]);
   --n;
 }
 
-
 void Graph::precolacio_graf_aresta( double q){
   for(auto edge= edges.begin(); edge != edges.end(); ){
     int val = rand()%1000;
@@ -98,7 +101,8 @@ void Graph::precolacio_graf_aresta( double q){
     }
     else ++edge;
   }
- } 
+}
+
 void Graph::precolacio_graf_node(double q){
   for(int i = 0;i < (int)nodes.size(); ++i){
     Node* node = nodes[i];
@@ -111,7 +115,6 @@ void Graph::precolacio_graf_node(double q){
   }
 }
 
-
 void Graph::DFS(Node* v, vector<bool> &visited){
   visited[v->value] = true;
   for(auto adj : v->adj){
@@ -120,7 +123,6 @@ void Graph::DFS(Node* v, vector<bool> &visited){
     }
   }
 }
-
 
 int Graph::numCompConnex(){
   int num = 0;
@@ -134,4 +136,3 @@ int Graph::numCompConnex(){
   }
   return num;
 }
-
